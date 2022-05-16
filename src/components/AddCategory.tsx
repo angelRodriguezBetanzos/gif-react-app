@@ -16,7 +16,7 @@ export const AddCategory = ({setValue}:Props) => {
             setValue(cats => [...cats,inputValue])
             setInputValue('')
         } else{
-            alert('Ingrese un valor válido')
+            alert('Please enter a valid text')
         }
         
     }
@@ -32,7 +32,7 @@ export const AddCategory = ({setValue}:Props) => {
                     <TextField
                         color='primary'
                         fullWidth
-                        label='Ingrese una categoría'
+                        label='Enter a category'
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />

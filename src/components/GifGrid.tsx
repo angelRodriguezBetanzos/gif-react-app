@@ -11,7 +11,7 @@ export const GifGrid = ({ category }: GiftGridProps) => {
 
     useEffect(() => {
         fetchGifs({setLoading, setImages, category})
-    }, [])
+    }, [category])
 
 
     return loading ? (<CircularProgress />) : images.length > 0 ? (

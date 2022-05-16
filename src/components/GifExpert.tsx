@@ -3,13 +3,29 @@ import { ExpandMoreRounded } from '@mui/icons-material'
 import { useState } from 'react'
 import { AddCategory } from './AddCategory';
 import { GifGrid } from './GifGrid';
+import { imagesCategories } from '../services/imageCategories';
 
 export const GifExpert = () => {
     const [categories, setCategories] = useState(['One Punch'])
 
     const handleAdd = () => {
+        const containsAll = imagesCategories.every(e => {
+            return categories.includes(e)
+        })
+        if (containsAll) {
+            alert('No more random categories available')
+        } else {
+            const max = imagesCategories.length
+            let isPresent = false
+            while (!isPresent) {
+                const elementSearch = imagesCategories[Math.floor(Math.random() * max)]
+                if (!(categories.includes(elementSearch))) {
+                    setCategories([...categories, elementSearch])
+                    break
+                }
+            }
+        }
 
-        setCategories([...categories, 'Anime'])
     }
 
     return (
@@ -18,7 +34,7 @@ export const GifExpert = () => {
                 elevation={6}
                 style={{ padding: 30, marginTop: 20, backgroundColor: '#3386FF' }}
             >
-                <Typography variant='h5' color='white' style={{fontWeight: 'bold'}}>
+                <Typography variant='h5' color='white' style={{ fontWeight: 'bold' }}>
                     GifExpertApp
                 </Typography>
             </Paper>
@@ -65,9 +81,9 @@ export const GifExpert = () => {
                 <Button
                     variant='contained'
                     onClick={handleAdd}
-                    
+
                 >
-                    Agregar Categoría
+                    Add Random Category
                 </Button>
             </Grid>
 
